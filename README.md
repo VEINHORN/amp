@@ -21,3 +21,7 @@ Simple utility which helps to manage Cisco Any Connect profiles
 ### Delete
 
 `delete` command helps to delete existing profile if you dont need it
+
+### Options
+
+Available options from `Profile.xml` file
