@@ -4,18 +4,29 @@ from xml.dom import minidom
 import argparse
 import os
 import initializer
+import host
 
 
 def main():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('command')
+    parser.add_argument('second_command', nargs='?')
+
+    parser.add_argument('-r', '--rewrite', action='store_true')
 
     args = parser.parse_args()
 
     if args.command:
         if args.command == 'init':
-            initializer.init()
+            initializer.init(args.rewrite)
+        elif args.command == 'host':
+            if args.second_command:
+                if args.second_command == 'ls':
+                    host.list()
+            else:
+                # by default we just list available servers
+                host.list()
 
 
 def parse_profiles():

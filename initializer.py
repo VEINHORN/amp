@@ -2,8 +2,8 @@ import os
 from constants import PROFILE_FILE_PATH
 
 
-def init():
-    if os.path.isfile(PROFILE_FILE_PATH):
+def init(rewrite=False):
+    if not rewrite and os.path.isfile(PROFILE_FILE_PATH):
         print('You already have file with Cisco AnyConnect profiles.')
         return
     # Create profile file
