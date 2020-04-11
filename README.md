@@ -1,8 +1,6 @@
 # amp
 
-You are using Cisco AnyConnect Secure Mobility Client and want to use several profiles to access different VPN hosts. _amp_ (AnyConnect Multi Profile) utility helps you to manage your profiles using simpe CLI interface.
-
-Simple utility which helps to manage Cisco Any Connect profiles
+If you use Cisco AnyConnect Secure Mobility Client `amp` utility might help you to initialize you AnyConnect profile, manage your server list, etc. It has simple CLI and easy to use.
 
 ## Commands
 
