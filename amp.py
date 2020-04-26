@@ -6,6 +6,8 @@ import os
 import initializer
 import host
 import sys
+import os
+import cisco_path
 
 
 class Amp:
