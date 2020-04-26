@@ -5,28 +5,55 @@ import argparse
 import os
 import initializer
 import host
+import sys
+
+
+class Amp:
+    def __init__(self):
+        parser = argparse.ArgumentParser(description='Simple utility which helps to manage Cisco AnyConnect profiles', usage='''amp <command> [<args>]
+Available commands:
+   init     Initialize AnyConnect profile if does not exist
+   host     List available hosts
+        ''')
+        parser.add_argument('command', help='Subcommand to run')
+        args = parser.parse_args(sys.argv[1:2])
+        if not hasattr(self, args.command):
+            print('Unrecognized command')
+            parser.print_help()
+            exit(1)
+
+        getattr(self, args.command)()
+
+    def init(self):
+        parser = argparse.ArgumentParser(
+            description='Initialize AnyConnect profile if does not exist'
+        )
+
+        parser.add_argument('init')
+        parser.add_argument('-r', '--rewrite', action='store_true')
+
+        args = parser.parse_args(sys.argv[1:])
+        initializer.init(args.rewrite)
+
+    def host(self):
+        parser = argparse.ArgumentParser(
+            description='Manage hosts in your profile'
+        )
+
+        parser.add_argument('host')
+        parser.add_argument('host_cmd', nargs='?')
+
+        args = parser.parse_args()
+        if args.host_cmd:
+            if args.host_cmd == 'ls':
+                host.list()
+        else:
+            # by default we just list available servers
+            host.list()
 
 
 def main():
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument('command')
-    parser.add_argument('second_command', nargs='?')
-
-    parser.add_argument('-r', '--rewrite', action='store_true')
-
-    args = parser.parse_args()
-
-    if args.command:
-        if args.command == 'init':
-            initializer.init(args.rewrite)
-        elif args.command == 'host':
-            if args.second_command:
-                if args.second_command == 'ls':
-                    host.list()
-            else:
-                # by default we just list available servers
-                host.list()
+    Amp()
 
 
 def parse_profiles():
