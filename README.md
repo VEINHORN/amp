@@ -36,6 +36,6 @@ python3 amp.py host
 
 `delete` command helps to delete existing profile if you dont need it
 
-### Options
+### Schema
 
-Available options from `Profile.xml` file
+`schema` command show XSD schema where you can find which options can be used to configure your Cisco AnyConnect profile.

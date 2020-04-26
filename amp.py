@@ -51,6 +51,10 @@ Available commands:
             # by default we just list available servers
             host.list()
 
+    def schema(self):
+        with open('AnyConnectProfile.xsd', 'r') as inp:
+            print(inp.read())
+
 
 def main():
     Amp()
